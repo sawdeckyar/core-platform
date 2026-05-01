@@ -1,0 +1,19 @@
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/portal/**'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy portal to Bluehost
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./apps/portal/
+          server-dir: /public_html/website_86612da6/portal/
