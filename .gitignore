@@ -36,3 +36,4 @@ supabase/.temp
 *.pem
 *.key
 secrets/
+*.msi
